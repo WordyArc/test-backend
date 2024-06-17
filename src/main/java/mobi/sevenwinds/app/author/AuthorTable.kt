@@ -5,7 +5,6 @@ import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.IntIdTable
 import org.jetbrains.exposed.sql.CurrentDateTime
-import org.joda.time.DateTime
 
 object AuthorTable : IntIdTable("author") {
     val name = varchar("name", 255)
@@ -18,7 +17,7 @@ class AuthorEntity(id: EntityID<Int>) : IntEntity(id) {
     var name by AuthorTable.name
     var createdAt by AuthorTable.createdAt
 
-    fun toResponse(): AuthorRecord {
-        return AuthorRecord(id.value, name, createdAt.toString("yyyy-MM-dd HH:mm:ss"))
+    fun toResponse(): AuthorDto {
+        return AuthorDto(id.value, name, createdAt.toString("yyyy-MM-dd HH:mm:ss"))
     }
 }
