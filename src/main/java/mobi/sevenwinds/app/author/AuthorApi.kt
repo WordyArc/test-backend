@@ -9,13 +9,13 @@ import com.papsign.ktor.openapigen.route.route
 
 fun NormalOpenAPIRoute.author() {
     route("/author") {
-        route("/add").post<Unit, AuthorRecord, CreateAuthorDto>(info("Добавить автора")) { _, body ->
+        route("/add").post<Unit, AuthorDto, CreateAuthorDto>(info("Добавить автора")) { _, body ->
             respond(AuthorService.addAuthor(body))
         }
     }
 }
 
-data class AuthorRecord(
+data class AuthorDto(
     val id: Int,
     @MinLength(1) val name: String,
     val createdAt: String

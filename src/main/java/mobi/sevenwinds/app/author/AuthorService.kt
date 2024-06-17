@@ -5,7 +5,7 @@ import kotlinx.coroutines.withContext
 import org.jetbrains.exposed.sql.transactions.transaction
 
 object AuthorService {
-    suspend fun addAuthor(body: CreateAuthorDto): AuthorRecord = withContext(Dispatchers.IO) {
+    suspend fun addAuthor(body: CreateAuthorDto): AuthorDto = withContext(Dispatchers.IO) {
         transaction {
             val entity = AuthorEntity.new {
                 this.name = body.name
