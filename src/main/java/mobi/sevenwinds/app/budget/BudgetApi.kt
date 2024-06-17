@@ -10,6 +10,8 @@ import com.papsign.ktor.openapigen.route.path.normal.get
 import com.papsign.ktor.openapigen.route.path.normal.post
 import com.papsign.ktor.openapigen.route.response.respond
 import com.papsign.ktor.openapigen.route.route
+import mobi.sevenwinds.app.author.AuthorRecord
+import org.joda.time.DateTime
 
 fun NormalOpenAPIRoute.budget() {
     route("/budget") {
@@ -29,13 +31,15 @@ data class BudgetRecord(
     @Min(1900) val year: Int,
     @Min(1) @Max(12) val month: Int,
     @Min(1) val amount: Int,
-    val type: BudgetType
+    val type: BudgetType,
+    val authorId: Int? = null
 )
 
 data class BudgetYearParam(
     @PathParam("Год") val year: Int,
     @QueryParam("Лимит пагинации") val limit: Int,
     @QueryParam("Смещение пагинации") val offset: Int,
+    @QueryParam("ФИО автора") val authorName: String? = null
 )
 
 class BudgetYearStatsResponse(
