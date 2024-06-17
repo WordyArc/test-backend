@@ -1,5 +1,6 @@
 package mobi.sevenwinds.app.budget
 
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.papsign.ktor.openapigen.annotations.parameters.PathParam
 import com.papsign.ktor.openapigen.annotations.parameters.QueryParam
 import com.papsign.ktor.openapigen.annotations.type.number.integer.max.Max
@@ -33,13 +34,14 @@ data class BudgetRecord(
     val authorId: Int? = null
 )
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 data class BudgetResponseDto(
     val year: Int,
     val month: Int,
     val amount: Int,
     val type: BudgetType,
     val authorName: String? = null,
-    val createdAt: String? = null
+    val creationTimestamp: String? = null
 )
 
 data class BudgetYearParam(
