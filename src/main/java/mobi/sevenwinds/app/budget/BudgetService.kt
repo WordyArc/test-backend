@@ -8,7 +8,7 @@ import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 
 object BudgetService {
-    suspend fun addRecord(body: BudgetRecord): BudgetRecord = withContext(Dispatchers.IO) {
+    suspend fun addRecord(body: BudgetRecord): BudgetResponseDto = withContext(Dispatchers.IO) {
         transaction {
             val authorEntity = body.authorId?.let { AuthorEntity.findById(it) }
             val entity = BudgetEntity.new {
